@@ -3,4 +3,9 @@
     <File Path="Directory.Build.props" />
     <File Path="NuGet.Config" />
   </Folder>
+  <Folder Name="/WebAuthenticationBrokerSample/">
+    <Project Path="WebAuthenticationBrokerSample\WebAuthenticationBrokerSample.Desktop\WebAuthenticationBrokerSample.Desktop.csproj" Type="Classic C#" />
+    <Project Path="WebAuthenticationBrokerSample\WebAuthenticationBrokerSample.iOS\WebAuthenticationBrokerSample.iOS.csproj" Type="Classic C#" />
+    <Project Path="WebAuthenticationBrokerSample\WebAuthenticationBrokerSample\WebAuthenticationBrokerSample.csproj" Type="Classic C#" />
+  </Folder>
 </Solution>
