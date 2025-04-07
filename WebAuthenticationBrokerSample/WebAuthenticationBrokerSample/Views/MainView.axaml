@@ -1,0 +1,117 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WebAuthenticationBrokerSample.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="WebAuthenticationBrokerSample.Views.MainView"
+             x:DataType="vm:MainViewModel">
+    <StackPanel>
+        <TabControl VerticalAlignment="Top"
+                    ItemsSource="{Binding AuthViewModels}"
+                    SelectedItem="{Binding CurrentViewModel, Mode=TwoWay}"
+                    DisplayMemberBinding="{Binding Title}">
+            <TabControl.DataTemplates>
+                <DataTemplate x:DataType="vm:CustomOAuthViewModel">
+                    <StackPanel Spacing="10">
+                        <TextBlock TextWrapping="Wrap">
+                            <Run>A generic OAuth implementation where you configure your own authentication server endpoints. This allows integration with any OAuth-compliant identity provider not directly supported through dedicated libraries.</Run>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontWeight="600">Request Uri:</Run>
+                            <Run>The endpoint URL of your custom OAuth server that initiates the authentication flow.</Run>
+                            <LineBreak/>
+                            <Run FontWeight="600">Redirect Uri:</Run>
+                            <Run>The URL where your server will redirect after authentication. Must match the one registered with your OAuth provider.</Run>
+                        </TextBlock>
+                        <TextBox Text="{Binding RequestUri}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Request Uri" />
+                        <TextBox Text="{Binding RedirectUri}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Redirect Uri" />
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate x:DataType="vm:GoogleOAuthViewModel">
+                    <StackPanel Spacing="10">
+                        <TextBlock TextWrapping="Wrap">
+                            <Run>Google's OAuth provides secure authentication and authorization for applications to access Google services on behalf of users without sharing passwords.</Run>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontWeight="600">Client Id:</Run>
+                            <Run>Your application's identifier obtained from</Run>
+                            <InlineUIContainer>
+                                <HyperlinkButton Content="Google Cloud Console"
+                                                 Padding="0"
+                                                 NavigateUri="https://console.cloud.google.com" />
+                            </InlineUIContainer>
+                            <LineBreak/>
+                            <Run FontWeight="600">Client Secret:</Run>
+                            <Run>Your application's secret obtained from Google Cloud Console.</Run>
+                            <LineBreak/>
+                            <Run FontWeight="600">Redirect Uri:</Run>
+                            <Run>The URL where Google will redirect after authentication. Must match one registered in your Google Cloud project.</Run>
+                            <LineBreak/>
+                            <Run>Note: Redirect Uri has different format depending on the target platform (iOS, Android, Desktop...)</Run>
+                        </TextBlock>
+                        <TextBox Text="{Binding ClientId}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Client Id"
+                                 PasswordChar="*" />
+                        <TextBox Text="{Binding ClientSecret}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Client Secret"
+                                 PasswordChar="*" />
+                        <TextBox Text="{Binding RedirectUri}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Redirect Uri" />
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate x:DataType="vm:MicrosoftIdentityOAuthViewModel">
+                    <StackPanel Spacing="10">
+                        <TextBlock TextWrapping="Wrap">
+                            <Run>Microsoft's authentication system that enables applications to authenticate users with Microsoft identities (personal, work, or school accounts)</Run>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontWeight="600">Client Id:</Run>
+                            <Run>Your application's identifier from</Run>
+                            <InlineUIContainer>
+                                <HyperlinkButton Content="Azure Portal"
+                                                 Padding="0"
+                                                 NavigateUri="https://portal.azure.com" />
+                            </InlineUIContainer>
+                            <Run>under App Registrations.</Run>
+                            <LineBreak/>
+                            <Run FontWeight="600">Authority:</Run>
+                            <Run>The Microsoft identity platform endpoint, typically https://login.microsoftonline.com/{tenant-id}.</Run>
+                            <LineBreak/>
+                            <Run FontWeight="600">Redirect Uri:</Run>
+                            <Run>The URL where Microsoft will redirect after authentication. Must match one registered in your Azure app.</Run>
+                        </TextBlock>
+                        <TextBox Text="{Binding ClientId}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Client Id"
+                                 PasswordChar="*" />
+                        <TextBox Text="{Binding Authority}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Authority"
+                                 PasswordChar="*" />
+                        <TextBox Text="{Binding RedirectUri}"
+                                 UseFloatingWatermark="True"
+                                 Watermark="Redirect Uri" />
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.DataTemplates>
+        </TabControl>
+        <StackPanel Spacing="10"
+                    Margin="10">
+            <Button Content="Authenticate"
+                    Command="{Binding CurrentViewModel.AuthenticateCommand}" />
+            <TextBox IsReadOnly="True"
+                     AcceptsReturn="True"
+                     UseFloatingWatermark="True"
+                     Watermark="Result"
+                     Text="{Binding CurrentViewModel.Result}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

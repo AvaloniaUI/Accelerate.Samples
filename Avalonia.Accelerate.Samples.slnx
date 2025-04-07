@@ -1,0 +1,17 @@
+﻿<Solution>
+  <Folder Name="/NativeWebViewAndDialogSample/">
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.Android\NativeWebViewAndDialogSample.Android.csproj" />
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.Desktop\NativeWebViewAndDialogSample.Desktop.csproj" />
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.iOS\NativeWebViewAndDialogSample.iOS.csproj" />
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="NuGet.Config" />
+  </Folder>
+  <Folder Name="/WebAuthenticationBrokerSample/">
+    <Project Path="WebAuthenticationBrokerSample\WebAuthenticationBrokerSample.Desktop\WebAuthenticationBrokerSample.Desktop.csproj" Type="Classic C#" />
+    <Project Path="WebAuthenticationBrokerSample\WebAuthenticationBrokerSample.iOS\WebAuthenticationBrokerSample.iOS.csproj" Type="Classic C#" />
+    <Project Path="WebAuthenticationBrokerSample\WebAuthenticationBrokerSample\WebAuthenticationBrokerSample.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>

@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <AvaloniaVersion>11.2.6</AvaloniaVersion>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaUILicenseKey Include="$(AvAccelerateKey)" />
+  </ItemGroup>
+</Project>

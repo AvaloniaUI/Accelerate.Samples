@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:NativeWebViewAndDialogSample.ViewModels"
+             x:Class="NativeWebViewAndDialogSample.Views.MainView"
+             x:DataType="vm:MainViewModel">
+    <Grid RowDefinitions="Auto,*,150,Auto">
+        <Grid ColumnDefinitions="*, Auto, Auto">
+            <TextBox Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}"
+                     Watermark="Enter web address" />
+            <Button Grid.Column="1"
+                    Content="Navigate" Command="{Binding NavigateCommand}" />
+            <Button Grid.Column="2"
+                    Content="Navigate Dialog" Command="{Binding NavigateDialogCommand}" />
+        </Grid>
+
+        <NativeWebView x:Name="WebView"
+                       Grid.Row="1"
+                       NavigationStarted="NativeWebView_OnNavigationStarted"
+                       NavigationCompleted="NativeWebView_OnNavigationCompleted"
+                       WebMessageReceived="NativeWebView_OnWebMessageReceived"
+                       Source="{Binding NavigationUrl, Mode=TwoWay}" />
+        <GridSplitter Grid.Row="2"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Top" />
+        <ScrollViewer Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding Log}" />
+        </ScrollViewer>
+        <Grid Grid.Row="3" ColumnDefinitions="*, Auto">
+            <TextBox x:Name="ScriptTextBox"
+                     Watermark="Execute script" />
+            <Button Grid.Column="1"
+                    Content="Execute"
+                    Click="ExecuteScript_OnClick"/>
+        </Grid>
+    </Grid>
+</UserControl>
