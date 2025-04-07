@@ -1,4 +1,10 @@
 ﻿<Solution>
+  <Folder Name="/NativeWebViewAndDialogSample/">
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.Android\NativeWebViewAndDialogSample.Android.csproj" />
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.Desktop\NativeWebViewAndDialogSample.Desktop.csproj" />
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.iOS\NativeWebViewAndDialogSample.iOS.csproj" />
+    <Project Path="NativeWebViewAndDialogSample\NativeWebViewAndDialogSample\NativeWebViewAndDialogSample.csproj" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Build.props" />
     <File Path="NuGet.Config" />
