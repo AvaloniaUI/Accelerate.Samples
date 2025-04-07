@@ -1,0 +1,6 @@
+﻿<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="NuGet.Config" />
+  </Folder>
+</Solution>
