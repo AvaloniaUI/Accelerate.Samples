@@ -1,0 +1,121 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Avalonia.Media.Demo.ViewModels"
+             xmlns:effectsFilters="clr-namespace:Avalonia.Media.Demo.Controls.EffectsFilters"
+             xmlns:behaviors="clr-namespace:Avalonia.Media.Demo.Controls.Behaviors"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:CompileBindings="True"
+             x:Class="Avalonia.Media.Demo.Views.MainView"
+             x:DataType="vm:MainViewModel">
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+    <UserControl.Styles>
+        <Style Selector="Panel#RootPanel.dragover Panel#DropTargetOverlay">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+
+        <Style Selector="Panel#RootPanel:not(.dragover) Panel#DropTargetOverlay">
+            <Setter Property="IsVisible" Value="False" />
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+
+        <Style Selector="Panel#DropTargetOverlay">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.1" Easing="CubicEaseIn" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Panel#RootPanel.enableTransparency">
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+
+        <Style Selector="Panel#RootPanel">
+            <Setter Property="Background" Value="#202020"></Setter>
+        </Style>
+
+        <Style Selector="Panel#RootPanel.enableTransparency">
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+
+        <Style Selector="Panel#RootPanel">
+            <Setter Property="Background" Value="#202020"></Setter>
+        </Style>
+        <Style Selector="Border#RootPanelBg2">
+            <Setter Property="Background" Value="#242424"></Setter>
+            <Setter Property="Opacity" Value="0.55"></Setter>
+        </Style>
+
+        <Style Selector="Panel#RootPanel.enableTransparency > Border#RootPanelBg2">
+            <Setter Property="Opacity" Value="0.55"></Setter>
+        </Style>
+    </UserControl.Styles>
+
+    <Panel Name="RootPanel" Classes.enableTransparency="{Binding EnableTransparency}">
+
+        <Interaction.Behaviors>
+            <behaviors:DropTargetBehavior DropCommand="{Binding DropCommand}" />
+        </Interaction.Behaviors>
+
+        <Border Name="RootPanelBg2" />
+
+        <effectsFilters:RandomNoiseTextureControl Opacity="0.15" />
+
+        <ContentControl Content="{Binding CurrentMediaView}">
+            <ContentControl.DataTemplates>
+                <DataTemplate DataType="vm:RemovableMediaView">
+                    <!-- Main Media Player Control Here-->
+                    <MediaPlayerControl Source="{Binding Source}" />
+                </DataTemplate>
+            </ContentControl.DataTemplates>
+        </ContentControl>
+
+        <Panel Background="Transparent" Height="48" VerticalAlignment="Top"
+               PointerPressed="InputElement_OnPointerPressed" />
+
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal"
+                    DockPanel.Dock="Right" Spacing="8" Margin="8">
+            <ToggleButton Command="{Binding ToggleMediaViewCommand}"
+                          IsChecked="True"
+                          CommandParameter="{Binding $self.IsChecked}">
+                <ToggleButton.Styles>
+                    <Style Selector="ToggleButton:not(:checked)">
+                        <Setter Property="IsChecked"/>
+                        <Setter Property="Content"
+                                Value="Detached" />
+                    </Style>
+                    <Style Selector="ToggleButton:checked">
+                        <Setter Property="Content"
+                                Value="Attached" />
+                    </Style>
+                </ToggleButton.Styles>
+            </ToggleButton>
+            <Button Classes="normal" Content="Open">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem Header="Open File" Click="Load_Click" />
+                        <MenuItem Header="Open Url" Click="Load_Uri_Click" />
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+        </StackPanel>
+
+        <Panel Name="DropTargetOverlay" Background="#6f000000" IsHitTestVisible="False">
+            <TextBlock FontSize="48" VerticalAlignment="Center"
+                       HorizontalAlignment="Center">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush StartPoint="-100%,-100%" EndPoint="200%,200%">
+                        <GradientStop Offset="0" Color="White" />
+                        <GradientStop Offset="1" Color="White" />
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+                Drop media here to play.
+            </TextBlock>
+        </Panel>
+    </Panel>
+</UserControl>

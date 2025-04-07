@@ -1,0 +1,23 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:Avalonia.Media.Demo"
+             x:Class="Avalonia.Media.Demo.App"
+             xmlns:labs="using:Avalonia.Labs.Controls"
+             Name="Accelerate Media Player"
+             RequestedThemeVariant="Dark">
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <NativeMenu.Menu>
+        <NativeMenu/>
+    </NativeMenu.Menu>
+    
+    <Application.Resources> 
+        <FontFamily x:Key="Poppins">avares://Avalonia.Media.Demo/Assets/Fonts/Poppins#Poppins</FontFamily>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+        <MediaFluentTheme/>
+        <labs:ControlThemes/>
+    </Application.Styles>
+</Application>
