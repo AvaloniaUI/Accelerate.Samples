@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Google.Apis.Auth.OAuth2;
+using Google.Apis.Util.Store;
 using WebAuthenticationBrokerSample.Services;
 
 namespace WebAuthenticationBrokerSample.ViewModels;
@@ -38,7 +39,8 @@ public partial class GoogleOAuthViewModel(MainViewModel mainViewModel)
             ["openid"],
             "user",
             CancellationToken.None,
-            codeReceiver: new AvaloniaBrokerGoogleCodeReceiver(topLevel, RedirectUri, PreferNativeWebDialog));
+            codeReceiver: new AvaloniaBrokerGoogleCodeReceiver(topLevel, RedirectUri, PreferNativeWebDialog),
+            dataStore: new NullDataStore());
         return "Token: " + credential.Token.AccessToken;
     }
 }

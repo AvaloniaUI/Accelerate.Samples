@@ -14,7 +14,7 @@
             <TabControl.DataTemplates>
                 <DataTemplate x:DataType="vm:CustomOAuthViewModel">
                     <StackPanel Spacing="10">
-                        <TextBlock TextWrapping="Wrap">
+                        <SelectableTextBlock TextWrapping="Wrap">
                             <Run>A generic OAuth implementation where you configure your own authentication server endpoints. This allows integration with any OAuth-compliant identity provider not directly supported through dedicated libraries.</Run>
                             <LineBreak/>
                             <LineBreak/>
@@ -23,7 +23,7 @@
                             <LineBreak/>
                             <Run FontWeight="600">Redirect Uri:</Run>
                             <Run>The URL where your server will redirect after authentication. Must match the one registered with your OAuth provider.</Run>
-                        </TextBlock>
+                        </SelectableTextBlock>
                         <TextBox Text="{Binding RequestUri}"
                                  UseFloatingWatermark="True"
                                  Watermark="Request Uri" />
@@ -34,7 +34,7 @@
                 </DataTemplate>
                 <DataTemplate x:DataType="vm:GoogleOAuthViewModel">
                     <StackPanel Spacing="10">
-                        <TextBlock TextWrapping="Wrap">
+                        <SelectableTextBlock TextWrapping="Wrap">
                             <Run>Google's OAuth provides secure authentication and authorization for applications to access Google services on behalf of users without sharing passwords.</Run>
                             <LineBreak/>
                             <LineBreak/>
@@ -53,7 +53,7 @@
                             <Run>The URL where Google will redirect after authentication. Must match one registered in your Google Cloud project.</Run>
                             <LineBreak/>
                             <Run>Note: Redirect Uri has different format depending on the target platform (iOS, Android, Desktop...)</Run>
-                        </TextBlock>
+                        </SelectableTextBlock>
                         <TextBox Text="{Binding ClientId}"
                                  UseFloatingWatermark="True"
                                  Watermark="Client Id"
@@ -69,7 +69,7 @@
                 </DataTemplate>
                 <DataTemplate x:DataType="vm:MicrosoftIdentityOAuthViewModel">
                     <StackPanel Spacing="10">
-                        <TextBlock TextWrapping="Wrap">
+                        <SelectableTextBlock TextWrapping="Wrap">
                             <Run>Microsoft's authentication system that enables applications to authenticate users with Microsoft identities (personal, work, or school accounts)</Run>
                             <LineBreak/>
                             <LineBreak/>
@@ -87,7 +87,7 @@
                             <LineBreak/>
                             <Run FontWeight="600">Redirect Uri:</Run>
                             <Run>The URL where Microsoft will redirect after authentication. Must match one registered in your Azure app.</Run>
-                        </TextBlock>
+                        </SelectableTextBlock>
                         <TextBox Text="{Binding ClientId}"
                                  UseFloatingWatermark="True"
                                  Watermark="Client Id"
