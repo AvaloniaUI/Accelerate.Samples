@@ -70,7 +70,8 @@
             <ContentControl.DataTemplates>
                 <DataTemplate DataType="vm:RemovableMediaView">
                     <!-- Main Media Player Control Here-->
-                    <MediaPlayerControl Source="{Binding Source}" />
+                    <MediaPlayerControl Source="{Binding Source}"
+                                        ErrorOccurred="MediaPlayerControl_OnErrorOccurred" />
                 </DataTemplate>
             </ContentControl.DataTemplates>
         </ContentControl>

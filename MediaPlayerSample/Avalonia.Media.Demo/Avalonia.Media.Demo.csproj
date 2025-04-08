@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Media" Version="1.0.0" />
-    <PackageReference Include="Avalonia.Media.Theme.Fluent" Version="1.0.0" />
+    <PackageReference Include="Avalonia.Controls.MediaPlayer" Version="11.2.0" />
   </ItemGroup>
 </Project>
