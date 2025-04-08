@@ -92,4 +92,25 @@ public partial class MainView : UserControl
             MainVm.Source = new UriSource(url);
         }
     }
+
+    private async void MediaPlayerControl_OnErrorOccurred(object? sender, MediaPlayerControlErrorEventArgs e)
+    {
+        var dialog = new ContentDialog
+        {
+            PrimaryButtonText = "Ok",
+            SecondaryButtonText = null,
+            IsSecondaryButtonEnabled = false,
+            Title = "Error Occurred",
+            Content = new ScrollViewer
+            {
+                Content = new SelectableTextBlock
+                {
+                    Text = e.Message
+                },
+                MaxHeight = 300
+            }
+        };
+        e.Handled = true;
+        await dialog.ShowAsync();
+    }
 }
