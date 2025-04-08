@@ -13,7 +13,7 @@
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.0.0" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.0.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Google.Apis.Auth" Version="1.69.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.70.1" />
