@@ -17,6 +17,9 @@
                         <SelectableTextBlock TextWrapping="Wrap">
                             <Run>A generic OAuth implementation where you configure your own authentication server endpoints. This allows integration with any OAuth-compliant identity provider not directly supported through dedicated libraries.</Run>
                             <LineBreak/>
+                            <Run FontWeight="600">By default,</Run>
+                            <Run>Request and Redirect urls configured to work with Avalonia Community Portal auth for demo purposes.</Run>
+                            <LineBreak/>
                             <LineBreak/>
                             <Run FontWeight="600">Request Uri:</Run>
                             <Run>The endpoint URL of your custom OAuth server that initiates the authentication flow.</Run>
