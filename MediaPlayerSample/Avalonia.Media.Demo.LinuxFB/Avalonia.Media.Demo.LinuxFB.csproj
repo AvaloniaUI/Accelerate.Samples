@@ -12,11 +12,7 @@
     <!-- This is to enable the linux fb only behavior on the ViewModels -->
     <DefineConstants>$(DefineConstants);DEMO_FB</DefineConstants>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
-
+ 
   <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.LinuxFramebuffer" Version="$(AvaloniaVersion)" />
