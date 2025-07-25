@@ -34,11 +34,7 @@ public partial class MainView : UserControl
 #if DEMO_FB
         // TODO: For testing purposes only, since Avalonia DRM backend doesn't support direct keyboard input just yet.
         // So we "manually" set the media source for immediate playback. 
-        Task.Factory.StartNew(async () =>
-        {
-            await Task.Delay(1000);
-            Dispatcher.UIThread.InvokeAsync(() => { MainVm.SetSource(new UriSource("/home/user/video.mp4")); });
-        });
+         Dispatcher.UIThread.InvokeAsync(() => { MainVm.SetSource(new UriSource("/home/user/video.mp4")); }, DispatcherPriority.Idle);
 #endif
 
         base.OnAttachedToVisualTree(e);
