@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content.PM;
-using Avalonia.Media.Android;
 using Avalonia.Android;
 using Avalonia.Vulkan;
 
@@ -31,10 +30,5 @@ public class MainActivity : AvaloniaMainActivity<App>
             })
             .WithInterFont()
             .LogToTrace();
-    }
-
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
     }
 }

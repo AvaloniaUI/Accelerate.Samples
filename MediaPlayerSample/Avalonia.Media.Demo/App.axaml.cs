@@ -7,6 +7,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media.Demo.ViewModels;
 using Avalonia.Media.Demo.Views;
 using System.Diagnostics.CodeAnalysis;
+using Avalonia.Threading;
 
 namespace Avalonia.Media.Demo;
 
@@ -16,6 +17,12 @@ public partial class App : Application
     {
         AvaloniaXamlLoader.Load(this);
         this.AttachDeveloperTools();
+        Dispatcher.UIThread.UnhandledException += (sender, e) =>
+        {
+            // Handle unhandled exceptions globally
+            System.Diagnostics.Debug.WriteLine($"Unhandled exception: {e.Exception}");
+            e.Handled = true; // Prevents the application from crashing
+        };
     }
 
     public override void OnFrameworkInitializationCompleted()

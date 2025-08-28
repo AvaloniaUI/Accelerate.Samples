@@ -17,11 +17,12 @@
     <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Skia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.2.0.1" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Controls.MediaPlayer" Version="11.2.0" />
+    <PackageReference Include="Avalonia.Controls.MediaPlayer" Version="11.3.3" />
   </ItemGroup>
 </Project>
