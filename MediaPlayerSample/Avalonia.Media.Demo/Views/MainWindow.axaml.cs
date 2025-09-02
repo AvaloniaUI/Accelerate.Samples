@@ -26,7 +26,6 @@ public partial class MainWindow : Window
                                                ExtendClientAreaChromeHints.PreferSystemChrome;
             ExtendClientAreaTitleBarHeightHint = 48;
         }
-
     }
 
     protected override void OnDataContextChanged(EventArgs e)
