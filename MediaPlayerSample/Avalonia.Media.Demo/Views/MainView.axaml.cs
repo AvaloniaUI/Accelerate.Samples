@@ -31,6 +31,12 @@ public partial class MainView : UserControl
 
         MainVm.DropCommand = new RelayCommand<DragEventArgs>(HandleDrop);
 
+#if DEMO_FB
+        // TODO: For testing purposes only, since Avalonia DRM backend doesn't support direct keyboard input just yet.
+        // So we "manually" set the media source for immediate playback. 
+         Dispatcher.UIThread.InvokeAsync(() => { MainVm.SetSource(new UriSource("/home/user/video.mp4")); }, DispatcherPriority.Idle);
+#endif
+
         base.OnAttachedToVisualTree(e);
     }
 
@@ -41,7 +47,6 @@ public partial class MainView : UserControl
         if (files is null || MainVm is null) return;
 
         MainVm.SetSource(new UriSource(files.Path));
-        
     }
 
     private async void Load_Click(object? _, RoutedEventArgs __)
@@ -84,7 +89,7 @@ public partial class MainView : UserControl
 
         var result = await dialog.ShowAsync();
 
-        if(result == ContentDialogResult.Primary)
+        if (result == ContentDialogResult.Primary)
         {
             if (string.IsNullOrWhiteSpace(input.Text) || MainVm == null) return;
 

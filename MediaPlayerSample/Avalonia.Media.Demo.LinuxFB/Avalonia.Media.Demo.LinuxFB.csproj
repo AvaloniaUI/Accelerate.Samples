@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifier>linux-arm64</RuntimeIdentifier>
+
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <RootNamespace>Avalonia.Media.Demo.LinuxFB</RootNamespace>
+    
+    <!-- This is to enable the linux fb only behavior on the ViewModels -->
+    <DefineConstants>$(DefineConstants);DEMO_FB</DefineConstants>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.LinuxFramebuffer" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Avalonia.Media.Demo\Avalonia.Media.Demo.csproj" />
+  </ItemGroup>
+
+</Project>
