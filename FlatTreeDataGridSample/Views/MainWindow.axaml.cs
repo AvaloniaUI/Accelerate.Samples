@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 
 namespace FlatTreeDataGridSample.Views;
+
 public partial class MainWindow : Window
 {
     public MainWindow()
