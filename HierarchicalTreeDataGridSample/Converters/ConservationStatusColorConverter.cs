@@ -9,11 +9,11 @@ namespace HierarchicalTreeDataGridSample.Converters;
 /// <summary>
 /// Converts a conservation status to a background color.
 /// </summary>
-public class ConservationStatusColorConverter : IMultiValueConverter
+public class ConservationStatusColorConverter : IValueConverter
 {
-    public object Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values[0] is not string status || string.IsNullOrEmpty(status))
+        if (value is not string status || string.IsNullOrEmpty(status))
             return new SolidColorBrush(Colors.Gray);
 
         return status.ToLower() switch
@@ -26,5 +26,10 @@ public class ConservationStatusColorConverter : IMultiValueConverter
             string s when s.Contains("least concern") => new SolidColorBrush(Color.Parse("#43AA8B")), // Green
             _ => new SolidColorBrush(Colors.Gray)
         };
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }

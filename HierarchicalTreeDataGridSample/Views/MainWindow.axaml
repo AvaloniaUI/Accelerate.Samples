@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="using:HierarchicalTreeDataGridSample.Converters"
         xmlns:models="using:HierarchicalTreeDataGridSample.Models"
         xmlns:vm="using:HierarchicalTreeDataGridSample.ViewModels"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
@@ -14,18 +15,20 @@
     <vm:MainWindowViewModel/>
   </Window.DataContext>
 
+  <Window.Resources>
+    <converters:ConservationStatusColorConverter x:Key="ConservationStatusColorConverter"/>
+  </Window.Resources>
+
   <TreeDataGrid Name="taxonomy"
                 Source="{Binding Source}">
     <TreeDataGrid.Resources>
+
       <!-- Template for the conservation status column -->
       <DataTemplate x:Key="ConservationStatusTemplate" DataType="models:TaxonomyItem">
-        <Border CornerRadius="3" Padding="4,2" Margin="2">
-          <Border.Background>
-            <!-- Set different colors based on conservation status -->
-            <MultiBinding Converter="{StaticResource ConservationStatusColorConverter}">
-              <Binding Path="ConservationStatus" />
-            </MultiBinding>
-          </Border.Background>
+
+        <!-- Use a colored border to indicate conservation status -->
+        <Border CornerRadius="3" Padding="4,2" Margin="2"
+                Background="{Binding ConservationStatus, Converter={StaticResource ConservationStatusColorConverter}}">
           <TextBlock Text="{Binding ConservationStatus}"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
