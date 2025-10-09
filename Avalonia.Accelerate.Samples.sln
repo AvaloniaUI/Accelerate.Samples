@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAuthenticationBrokerSamp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatTreeDataGridSample", "FlatTreeDataGridSample\FlatTreeDataGridSample.csproj", "{3CD6AE38-B041-491C-A472-2801154CAE85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalTreeDataGridSample", "HierarchicalTreeDataGridSample\HierarchicalTreeDataGridSample.csproj", "{68EBBA38-29AC-4346-BDB8-A22D46D9AE87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,10 @@ Global
 		{3CD6AE38-B041-491C-A472-2801154CAE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD6AE38-B041-491C-A472-2801154CAE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CD6AE38-B041-491C-A472-2801154CAE85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68EBBA38-29AC-4346-BDB8-A22D46D9AE87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68EBBA38-29AC-4346-BDB8-A22D46D9AE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68EBBA38-29AC-4346-BDB8-A22D46D9AE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68EBBA38-29AC-4346-BDB8-A22D46D9AE87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

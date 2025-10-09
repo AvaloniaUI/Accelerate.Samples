@@ -1,0 +1,19 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:HierarchicalTreeDataGridSample.Converters"
+             x:Class="HierarchicalTreeDataGridSample.App"
+             RequestedThemeVariant="Default">
+  <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+  <Application.Styles>
+    <FluentTheme />
+
+    <!-- Include the TreeDataGrid fluent theme -->
+    <StyleInclude Source="avares://Avalonia.Controls.TreeDataGrid/Themes/Fluent.axaml"/>
+
+  </Application.Styles>
+
+  <Application.Resources>
+    <converters:ConservationStatusColorConverter x:Key="ConservationStatusColorConverter"/>
+  </Application.Resources>
+</Application>
