@@ -16,7 +16,11 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+
+#if DEBUG
         this.AttachDeveloperTools();
+#endif
+
         Dispatcher.UIThread.UnhandledException += (sender, e) =>
         {
             // Handle unhandled exceptions globally

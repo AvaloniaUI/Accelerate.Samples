@@ -12,17 +12,20 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Labs.Controls" Version="11.2.0" />
+    <PackageReference Include="Avalonia.Labs.Controls" Version="11.3.1" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Skia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.2.0.1" />
-    <PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Xaml.Behaviors.Interactivity" Version="11.3.6.5" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Controls.MediaPlayer" Version="11.3.3" />
+    <PackageReference Include="Avalonia.Controls.MediaPlayer" Version="11.3.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Developer Tools integration -->
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.1.*" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 </Project>
