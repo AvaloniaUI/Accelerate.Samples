@@ -1,0 +1,64 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="using:FlatTreeDataGridSample.Models"
+        xmlns:vm="using:FlatTreeDataGridSample.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="FlatTreeDataGridSample.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="FlatTreeDataGridSample">
+
+  <Window.DataContext>
+    <vm:MainWindowViewModel/>
+  </Window.DataContext>
+
+  <TreeDataGrid Name="countries"
+                Source="{Binding Source}"
+                AllowTriStateSorting="True"
+                AutoDragDropRows="True">
+    <TreeDataGrid.Resources>
+
+      <!-- Template for Region column cells -->
+      <DataTemplate x:Key="RegionCell" DataType="models:Country">
+        <TextBlock Text="{Binding Region}" VerticalAlignment="Center"/>
+      </DataTemplate>
+
+      <!-- Template for Region column cells -->
+      <DataTemplate x:Key="RegionEditCell" DataType="models:Country">
+        <ComboBox ItemsSource="{x:Static models:Countries.Regions}"
+                  SelectedItem="{Binding Region}"/>
+      </DataTemplate>
+
+    </TreeDataGrid.Resources>
+
+    <!-- Display rows with alternating background colors -->
+    <TreeDataGrid.RowTheme>
+      <ControlTheme TargetType="TreeDataGridRow"
+                    BasedOn="{StaticResource {x:Type TreeDataGridRow}}">
+        <Style Selector="^:nth-last-child(2n)">
+          <Setter Property="Background" Value="#20808080"/>
+        </Style>
+      </ControlTheme>
+    </TreeDataGrid.RowTheme>
+
+    <!-- Display the last column header in bold font -->
+    <TreeDataGrid.ColumnHeaderTheme>
+      <ControlTheme TargetType="TreeDataGridColumnHeader"
+                    BasedOn="{StaticResource {x:Type TreeDataGridColumnHeader}}">
+        <Style Selector="^:nth-last-child(1)">
+          <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+        </Style>
+      </ControlTheme>
+    </TreeDataGrid.ColumnHeaderTheme>
+
+    <!-- Display the last column cells in bold font -->
+    <TreeDataGrid.Styles>
+      <Style Selector="TreeDataGrid :is(TreeDataGridCell):nth-last-child(1)">
+        <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+      </Style>
+    </TreeDataGrid.Styles>
+  </TreeDataGrid>
+
+</Window>
