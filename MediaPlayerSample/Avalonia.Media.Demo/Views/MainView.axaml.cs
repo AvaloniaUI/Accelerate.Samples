@@ -1,16 +1,12 @@
 using Avalonia.Media.Demo.ViewModels;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Labs.Controls;
 using Avalonia.Platform.Storage;
-using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using System;
-using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Avalonia.Media.Demo.Views;
 
