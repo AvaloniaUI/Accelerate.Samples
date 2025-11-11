@@ -42,7 +42,7 @@ public class DropTargetBehavior : Behavior<Control>
     private void DragLeave(object? sender, DragEventArgs e)
     {
         e.DragEffects &= (DragDropEffects.Copy | DragDropEffects.Move);
-        if (!e.Data.Contains(DataFormats.Files))
+        if (!e.DataTransfer.Contains(DataFormat.File))
         {
             e.DragEffects = DragDropEffects.None;
             return;
@@ -54,7 +54,7 @@ public class DropTargetBehavior : Behavior<Control>
     private void DragEnter(object? sender, DragEventArgs e)
     {
         e.DragEffects &= (DragDropEffects.Copy | DragDropEffects.Move);
-        if (!e.Data.Contains(DataFormats.Files))
+        if (!e.DataTransfer.Contains(DataFormat.File))
         {
             e.DragEffects = DragDropEffects.None;
             return;
@@ -66,7 +66,7 @@ public class DropTargetBehavior : Behavior<Control>
     private void Drop(object? sender, DragEventArgs e)
     {
         DisableClass();
-        if (!e.Data.Contains(DataFormats.Files)) return;
+        if (!e.DataTransfer.Contains(DataFormat.File)) return;
         if (DropCommand?.CanExecute(e) == true)
         {
             DropCommand.Execute(e);

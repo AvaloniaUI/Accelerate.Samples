@@ -32,7 +32,7 @@ public partial class MainView : UserControl
 
     private void HandleDrop(DragEventArgs? e)
     {
-        var files = e?.Data.GetFiles()?.FirstOrDefault();
+        var files = e?.DataTransfer.TryGetFiles()?.FirstOrDefault();
 
         if (files is null || MainVm is null) return;
 
