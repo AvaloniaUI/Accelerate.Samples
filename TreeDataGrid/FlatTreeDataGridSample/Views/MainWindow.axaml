@@ -17,9 +17,7 @@
   <TreeDataGrid Name="countries"
                 Source="{Binding Source}"
                 AllowTriStateSorting="True"
-                AutoDragDropRows="True"
-                CellPrepared="countries_CellPrepared"
-                CellClearing="countries_CellClearing">
+                AutoDragDropRows="True">
     <TreeDataGrid.Resources>
 
       <!-- Template for Region column cells -->
@@ -34,33 +32,6 @@
       </DataTemplate>
 
     </TreeDataGrid.Resources>
-
-    <!-- Display rows with alternating background colors -->
-    <TreeDataGrid.RowTheme>
-      <ControlTheme TargetType="TreeDataGridRow"
-                    BasedOn="{StaticResource {x:Type TreeDataGridRow}}">
-        <Style Selector="^:nth-last-child(2n)">
-          <Setter Property="Background" Value="#20808080"/>
-        </Style>
-      </ControlTheme>
-    </TreeDataGrid.RowTheme>
-
-    <!-- Display the last column header in bold font -->
-    <TreeDataGrid.ColumnHeaderTheme>
-      <ControlTheme TargetType="TreeDataGridColumnHeader"
-                    BasedOn="{StaticResource {x:Type TreeDataGridColumnHeader}}">
-        <Style Selector="^:nth-last-child(1)">
-          <Setter Property="TextBlock.FontWeight" Value="Bold"/>
-        </Style>
-      </ControlTheme>
-    </TreeDataGrid.ColumnHeaderTheme>
-
-    <!-- Display the last column cells in bold font -->
-    <TreeDataGrid.Styles>
-      <Style Selector="TreeDataGrid :is(TreeDataGridCell):nth-last-child(1)">
-        <Setter Property="TextBlock.FontWeight" Value="Bold"/>
-      </Style>
-    </TreeDataGrid.Styles>
   </TreeDataGrid>
 
 </Window>

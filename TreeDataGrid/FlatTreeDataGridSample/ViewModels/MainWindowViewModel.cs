@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.Controls;
+using Avalonia.Controls.Selection;
 using FlatTreeDataGridSample.Models;
 
 namespace FlatTreeDataGridSample.ViewModels;
@@ -39,6 +40,11 @@ internal partial class MainWindowViewModel : ViewModelBase
                 o.TextAlignment = Avalonia.Media.TextAlignment.Right;
                 o.MaxWidth = new GridLength(150);
             });
+
+        Source.Selection = new TreeDataGridCellSelectionModel<Country>(Source)
+        {
+            SingleSelect = false,
+        };
 
         MaxPopulation = _data.Max(x => x.Population);
     }
