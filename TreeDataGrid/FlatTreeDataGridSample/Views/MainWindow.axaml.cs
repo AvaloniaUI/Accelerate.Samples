@@ -1,8 +1,9 @@
+using System;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Media;
+using Avalonia.Controls.Selection;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using FlatTreeDataGridSample.Models;
-using FlatTreeDataGridSample.ViewModels;
 
 namespace FlatTreeDataGridSample.Views;
 
@@ -11,39 +12,36 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        countries.AddHandler(InputElement.KeyDownEvent, OnPreviewCountriesKeyDown, RoutingStrategies.Tunnel);
     }
 
-    private void countries_CellPrepared(object? sender, TreeDataGridCellEventArgs e)
+    private void OnPreviewCountriesKeyDown(object? sender, KeyEventArgs e)
     {
-        if (GetColumnHeader(e.ColumnIndex) != "Population" ||
-            DataContext is not MainWindowViewModel viewModel ||
-            e.Cell is not TreeDataGridTextCell cell ||
-            !countries.TryGetRowModel<Country>(e.Cell, out var country))
+        if (countries.Source is not TreeDataGridSource<Country> source ||
+            countries.Selection is not TreeDataGridRowSelectionModel<Country> selection ||
+            selection.SelectedIndex == default)
         {
             return; 
         }
 
-        // Give Population cells a blue background with an opacity value based on the percent
-        // of the maximum population they hold.
-        var opacity = (double)country.Population / viewModel.MaxPopulation;
-        
-        cell.Background = new SolidColorBrush(Colors.Blue, opacity);
-    }
-
-    private void countries_CellClearing(object? sender, TreeDataGridCellEventArgs e)
-    {
-        if (GetColumnHeader(e.ColumnIndex) != "Population" ||
-            e.Cell is not TreeDataGridTextCell cell)
+        if (e.Key == Key.Enter)
         {
-            return;
+            // Translate from model index to row index. This is necessary because if the grid is
+            // sorted or filtered, then the row and model indices will be ordered differently.
+            var selectedRowIndex = source.ModelIndexToRowIndex(selection.SelectedIndex);
+
+            if (selectedRowIndex == -1)
+                return;
+
+            // Move the selection down one rowand to translate back to model index.
+            var newRowIndex = selectedRowIndex + 1;
+            var newModelIndex = source.RowIndexToModelIndex(newRowIndex);
+
+            // Set the new selection. The focused column will remain the same, so we don't need to
+            // worry about that (as can be seen by using Tab/Arrow keys to change the focused column
+            // and then pressing F2 to edit).
+            selection.SelectedIndex = newModelIndex;
         }
-
-        // Ensure that the population cell background is cleared when it is recycled.
-        cell.ClearValue(BackgroundProperty);
-    }
-
-    private string? GetColumnHeader(int columnIndex)
-    {
-        return countries.Columns?[columnIndex].Header as string;
     }
 }
