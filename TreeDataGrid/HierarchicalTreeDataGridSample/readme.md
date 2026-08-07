@@ -1,31 +1,31 @@
 ## HierarchicalTreeDataGridSample
 
-This sample demonstrates how to use the `TreeDataGrid` component to display hierarchical data in a tree-like structure.
+This sample reproduces the setup from the bug report *"Expander icon in TreeDataGrid not
+responsive to double-click or keyboard toggles"*.
 
-It uses the MVVM pattern and sets up a `HierarchicalTreeDataGridSource` in `MainWindowViewModel` which is exposed to the view via a property.
+It builds a `HierarchicalTreeDataGridSource<TreeNode>` in `MainWindowViewModel` from a small
+tree of fruits and animals, and exposes it to the view via a `Source` property. The view is a
+bare `<TreeDataGrid Source="{Binding Source}" />`.
 
-The sample showcases a biological taxonomy classification system, displaying organisms hierarchically organized by their taxonomic ranks (Class, Order, Family, Genus, Species, etc.).
+### Setup as described in the report
 
-## Key Features Demonstrated
+- **Model**: `public record TreeNode(string Name, TreeNode[] Children);` — a record whose
+  children are held in an array.
+- **Column**: a single `WithHierarchicalExpanderColumn` whose inner column is a
+  `TreeDataGridTemplateColumn` rendering a `TextBlock`. No `isExpanded` binding is supplied.
+- **Package**: `Avalonia.Controls.TreeDataGrid` `12.2.0`, matching the version in the report.
 
-### Hierarchical Data Representation
-- **Parent-Child Relationships**: Demonstrates how to model and display hierarchical data
-- **Expandable Nodes**: Shows how to configure expandable/collapsible nodes for navigating the hierarchy
-- **Depth Visualization**: Proper indentation showing the depth level of each item
+### Reproducing / investigating
 
-### Advanced TreeDataGrid Features
-- **Custom Node Styling**: Different styling for parent nodes vs. leaf nodes
-- **Conditional Formatting**: Color-coded conservation status based on values
-- **Custom Templates**: Using templates for specialized data visualization
-- **Auto-Expansion**: Automatically expanding top-level nodes when loading
+The tree starts collapsed. The reporter states that the expander chevron only updates when the
+chevron itself is clicked, and not when the row is expanded via a double-click or via keyboard
+navigation. To exercise each path:
 
-### Data Handling
-- **Dynamic Children Loading**: Demonstrates how to provide children for each node using a ChildrenGetter
-- **Hierarchical Data Model**: Shows proper modeling of nested data with parent-child relationships
+- **Chevron**: click the expander triangle directly.
+- **Double-click**: double-click a row's content (away from the chevron).
+- **Keyboard**: select a row, then press <kbd>Right</kbd> to expand and <kbd>Left</kbd> to
+  collapse.
 
-### Visual Customization
-- **Status Indicators**: Visual indication of conservation status with color-coding
-- **Parent Node Highlighting**: Visual differentiation for nodes that contain children
-- **Special Formatting**: Customized appearance for taxonomy ranks and scientific names
-
-This sample is particularly useful for visualizing any hierarchical data structure such as file systems, organizational charts, product categories, or taxonomies.
+Note: the report uses a ReactiveUI `ReactiveObject` view-model base; this sample keeps the
+repo-standard `CommunityToolkit.Mvvm` base, which is equivalent for this scenario as the
+expanded state is not bound to the model.

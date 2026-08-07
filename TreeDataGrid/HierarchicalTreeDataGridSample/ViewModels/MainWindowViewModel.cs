@@ -1,67 +1,57 @@
-﻿using System.Collections.ObjectModel;
 using Avalonia.Controls;
+using Avalonia.Controls.Templates;
 using HierarchicalTreeDataGridSample.Models;
 
 namespace HierarchicalTreeDataGridSample.ViewModels;
 
 /// <summary>
-/// Represents the view model for the main window, providing a hierarchical data source
-/// for a TreeDataGrid that displays a taxonomic classification system.
+/// Reproduces the setup from the bug report: a single hierarchical expander column whose
+/// inner column is a <see cref="TreeDataGridTemplateColumn"/> rendering a <see cref="TextBlock"/>,
+/// with no <c>isExpanded</c> binding. The tree is left collapsed so the expander icon can be
+/// toggled by clicking the chevron, double-clicking a row, or using keyboard navigation
+/// (Left/Right arrows).
 /// </summary>
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private readonly ObservableCollection<TaxonomyItem> _data = new(TaxonomyData.GetSampleTaxonomy());
-
     public MainWindowViewModel()
     {
-        // Create a hierarchical TreeDataGrid source
-        Source = new HierarchicalTreeDataGridSource<TaxonomyItem>(_data)
-            
-            // Define an expander column with an inner text column for the scientific name
-            .WithHierarchicalExpanderTextColumn(
-                "Scientific Name",
-                x => x.ScientificName,
-                x => x.Children,
-                options: o => o.Width = new GridLength(2, GridUnitType.Star))
-
-            // Define a text column for the taxonomic rank
-            .WithTextColumn(
-                "Taxonomic Rank",
-                x => x.TaxonomicRank,
-                o => o.Width = new GridLength(1, GridUnitType.Star))
-
-            // Define a column for the common name
-            .WithTextColumn(
-                "Common Name",
-                x => x.CommonName,
-                o => o.Width = new GridLength(2, GridUnitType.Star))
-
-            // Define a column for the description
-            .WithTextColumn(
-                "Description",
-                x => x.Description,
-                o => o.Width = new GridLength(3, GridUnitType.Star))
-
-            // Define a column for the habitat
-            .WithTextColumn(
-                x => x.Habitat,
-                o => o.Width = new GridLength(2, GridUnitType.Star))
-
-            // Define a column for the conservation status
-            .WithTemplateColumnFromResourceKeys(
-                "Conservation Status",
-                "ConservationStatusTemplate",
-                options: o => o.Width = new GridLength(1, GridUnitType.Star));
-
-        // Auto-expand the top level items
-        for (var i = 0; i < _data.Count; ++i)
-        {
-            Source.Expand(new IndexPath(i));
-        }
+        Source = CreateFakeData();
     }
 
     /// <summary>
     /// Gets the hierarchical data source for the tree data grid.
     /// </summary>
-    public HierarchicalTreeDataGridSource<TaxonomyItem> Source { get; }
+    public HierarchicalTreeDataGridSource<TreeNode> Source { get; private set; }
+
+    private static HierarchicalTreeDataGridSource<TreeNode> CreateFakeData()
+    {
+        var nodes = new TreeNode[]
+        {
+            new TreeNode("Fruits",
+            [
+                new TreeNode("apples", []),
+                new TreeNode("oranges", []),
+            ]),
+            new TreeNode("Animals",
+            [
+                new TreeNode("cats", []),
+                new TreeNode("dogs", []),
+            ]),
+        };
+
+        return new HierarchicalTreeDataGridSource<TreeNode>(nodes)
+            .WithHierarchicalExpanderColumn(
+                "Name",
+                new TreeDataGridTemplateColumn
+                {
+                    Width = GridLength.Star,
+                    CellTemplate = new FuncDataTemplate<TreeNode>((x, _) =>
+                    {
+                        // (my case is more complicated obviously)
+                        return new TextBlock { Text = x?.Name };
+                    })
+                },
+                x => x.Children,
+                options: o => { o.Width = GridLength.Star; });
+    }
 }
